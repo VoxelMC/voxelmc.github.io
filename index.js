@@ -129,7 +129,7 @@ function getLock(p, q) {
 }
 
 function getKey(p, q) {
-    let d = getD(getE(getN(p, q)), getN(p, q));
+    let d = getD(getE(getN(p, q)), phi(getN(p, q)));
     let N = getN(p, q);
     return `${d}, ${N}`;
 }
