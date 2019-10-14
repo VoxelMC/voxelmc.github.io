@@ -1,3 +1,5 @@
+import { parse } from "querystring";
+
 const letters = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 document.getElementById("genButton").onclick = () => {
     const p = document.getElementById("p").value === 0 ? 0 : document.getElementById("p").value;
@@ -53,9 +55,16 @@ document.getElementById("decodeButton").onclick = () => {
     let message = document.getElementById("message").value;
     let decrypted = "";
     let decryptedMessage = "";
-    message = message.split("");
+    let parseAsString = true
+    if (isNaN(message.split("")[0])) {
+        message = message.split("");
+    }
+    else {
+        parseAsString = false;
+        message = message.split(" ");
+    }
     for (const encd of message) {
-        const decode = (BigInt(letters.indexOf(encd.toLowerCase())) ** BigInt(d)) % BigInt(keyN);
+        const decode = parseAsString ? (BigInt(letters.indexOf(encd.toLowerCase())) ** BigInt(d)) % BigInt(keyN) : (BigInt(encd) ** BigInt(d)) % BigInt(keyN);
         decrypted += `${decode} `;
         decryptedMessage += `${letters[decode]}`;
     }
