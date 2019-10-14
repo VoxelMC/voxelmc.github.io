@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>Trev's Math Thing</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="body">
+            <table>
+                <tr>
+                    <th style="width: 5%"></th>
+                    <th style="width: 45%"></th>
+                    <th style="width: 45%"></th>
+                    <th style="width: 5%"></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="panel">
+                            <table>
+                                <tr class="title">
+                                    <th class="title">Calculations:</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="calcs">
+                                            <p id="first">   </p>
+                                            <p id="second">  </p>
+                                            <p id="third">   </p>
+                                            <p id="fourth">  </p>
+                                            <p id="fifth">   </p>
+                                            <p id="sixth">   </p>
+                                            <p id="seventh"> </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p id="answer">answer</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="panel">
+                            <table>
+                                <tr class="title">
+                                    <th class="title">Lock and Key</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="lockAndKey" id="gen">
+                                            <div class="primes">
+                                                <h3>Choose Primes <em>p</em> and <em>q</em></h3>
+                                                <textarea placeholder="p" class="shortField" id="p"></textarea>
+                                                <textarea placeholder="q" class="shortField" id="q"></textarea>
+                                            </div>
+                                            <div class="button">
+                                                <button id="genButton">Calculate</button>
+                                            </div>
+                                        </div>
+                                        <div class="lockAndKey" id="encrypt">
+                                            <div class="message">
+                                                <h3>Message to Encode</h3>
+                                                <textarea name="Message" placeholder="Put your message here..." id="message"></textarea>
+                                            </div>
+                                            <div class="lock">
+                                                <h5>Lock: (e, N)</h5>
+                                                <textarea placeholder="e" class="shortField" id="lockVal1"></textarea>
+                                                <textarea placeholder="N" class="shortField" id="lockVal2"></textarea>
+                                            </div>
+                                            <div class="key">
+                                                <h5>Key: (d, N) </h5>
+                                                <textarea placeholder="d" class="shortField" id="keyVal1"></textarea>
+                                                <textarea placeholder="N" class="shortField" id="keyVal2"></textarea>
+                                            </div>
+                                            <div class="button">
+                                                <button id="encodeButton">Encode</button>
+                                                <button id="decodeButton">Decode</button>
+                                                <button id="bothButton">Do Both</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <td>
+                                        <p id="answer"></p>
+                                    </td>
+                                </tr> -->
+                            </table>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Developed by: Trevor Fox</td>
+                </tr>
+            </table>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>

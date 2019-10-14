@@ -1,0 +1,67 @@
+.panel {
+    height: 100%;
+    background-color: blanchedalmond;
+    border: darkgoldenrod;
+}
+
+.title {
+    height: 7%;
+    text-align: center;
+    text-emphasis: bold;
+}
+
+.shortField {
+    width: 24.8%;
+}
+
+.lockAndKey {
+    text-align: center;
+}
+
+/* .lock {
+
+}
+
+.key {
+
+} */
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+
+td, th {
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(odd) {
+    height: 5%
+}
+
+h5 {
+    margin: 5px;
+}
+
+#calcs {
+    text-align: center;
+    height: 100%;
+}
+
+/* #encrypt {
+    text-align: center;
+    /* height: 100%;
+} */
+
+#answer {
+    text-emphasis: bold;
+    text-align: center;
+}
+
+#message {
+    width: 50%;
+}
