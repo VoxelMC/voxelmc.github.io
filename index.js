@@ -1,5 +1,3 @@
-import { parse } from "querystring";
-
 const letters = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 document.getElementById("genButton").onclick = () => {
     const p = document.getElementById("p").value === 0 ? 0 : document.getElementById("p").value;
