@@ -147,8 +147,7 @@ function phi(n) {
     {
         if (n % p === 0)
         { 
-            while (n % p === 0)
-                n /= p; 
+            while (n % p === 0) n /= p; 
             result *= (1.0 - (1.0 / p)); 
         } 
     }
