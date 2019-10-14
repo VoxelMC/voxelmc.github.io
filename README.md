@@ -1,4 +1,4 @@
-# voxelmc.github.io
+# [voxelmc.github.io](https://voxelmc.github.io)
  School Project
 
 ## How do you use this website?
