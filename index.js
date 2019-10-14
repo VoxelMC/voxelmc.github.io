@@ -1,3 +1,4 @@
+const letters = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 document.getElementById("genButton").onclick = () => {
     const p = document.getElementById("p").value == 0 ? 0 : document.getElementById("p").value;
     const q = document.getElementById("q").value == 0 ? 0 : document.getElementById("q").value;
@@ -7,37 +8,77 @@ document.getElementById("genButton").onclick = () => {
     const e = getE(N);
     const d = getD(e, phiN);
 
-    document.getElementById("first").innerHTML   =  `<b>p = ${p}, q = ${q}</b>`;
-    document.getElementById("second").innerHTML  =  `<b>N = pq = ${N}</b>`;
-    document.getElementById("third").innerHTML   =  `phi(N) (number of integers coprime with <em>N</em>) => <b>phi(N) = ${phiN}</b>`;
-    document.getElementById("fourth").innerHTML  =  `Find <em>e</em> where e is coprime with <em>N</em> and <em>phi(N)</em> => <b>e = ${e}</b>`;
-    document.getElementById("fifth").innerHTML   =  `Public Lock is (e, N) = <b>(${getLock(p, q)})</b>`;
-    document.getElementById("sixth").innerHTML   =  `Find <em>d</em> where <em>de</em> (<em>mod N</em>) = 1 => ${e}d (<em>mod ${N}</em>) = 1 => <b>d = ${d}</b>`;
-    document.getElementById("seventh").innerHTML =  `Private Key is (d, N) = <b>(${getKey(p, q)})</b>`;
+    document.getElementById("first").innerHTML     =  `<b>p = ${p}, q = ${q}</b>`;
+    document.getElementById("second").innerHTML    =  `<b>N = pq = ${N}</b>`;
+    document.getElementById("third").innerHTML     =  `phi(N) (number of integers coprime with <em>N</em>) => <b>phi(N) = ${phiN}</b>`;
+    document.getElementById("fourth").innerHTML    =  `Find <em>e</em> where e is coprime with <em>N</em> and <em>phi(N)</em> => <b>e = ${e}</b>`;
+    document.getElementById("fifth").innerHTML     =  `Public Lock is (e, N) = <b>(${getLock(p, q)})</b>`;
+    document.getElementById("sixth").innerHTML     =  `Find <em>d</em> where <em>de</em> (<em>mod N</em>) = 1 => ${e}d (<em>mod ${N}</em>) = 1 => <b>d = ${d}</b>`;
+    document.getElementById("seventh").innerHTML   =  `Private Key is (d, N) = <b>(${getKey(p, q)})</b>`;
 
-    document.getElementById("lockVal1").innerHTML  = e;
-    document.getElementById("lockVal2").innerHTML  = N;
-    document.getElementById("keyVal1").innerHTML   = d;
-    document.getElementById("keyVal2").innerHTML   = N;
+    document.getElementById("lockVal1").innerHTML  =  e;
+    document.getElementById("lockVal2").innerHTML  =  N;
+    document.getElementById("keyVal1").innerHTML   =  d;
+    document.getElementById("keyVal2").innerHTML   =  N;
 }
 
 document.getElementById("encodeButton").onclick = () => {
-    
+    const e = BigInt(document.getElementById("lockVal1").value);
+    const lockN = BigInt(document.getElementById("lockVal2").value);
+    const message = document.getElementById("message").value;
+
+    let encrypted = "";
+    let msgNumerals = "";
+    let encryptedMessage = "";
+    for (const char of message) {
+        if (!letters.includes(char.toLowerCase())) continue;
+        const numChar = letters.indexOf(char.toLowerCase());
+        const encode = (BigInt(numChar) ** BigInt(e)) % BigInt(lockN)
+        encrypted += `${encode} `;
+        msgNumerals += `${numChar} `;
+        encryptedMessage += letters[encode];
+    }
+    document.getElementById("first").innerHTML     =  `Your message was: ${message}`;
+    document.getElementById("second").innerHTML    =  `Which becomes: ${msgNumerals}`;
+    document.getElementById("third").innerHTML     =  `After encryption, this becomes: ${encrypted}`;
+    document.getElementById("fourth").innerHTML    =  `This, when stringified, becomes: ${encryptedMessage}`;
+    document.getElementById("fifth").innerHTML     =  "";
+    document.getElementById("sixth").innerHTML     =  "";
+    document.getElementById("seventh").innerHTML   =  "";
 }
 
 document.getElementById("decodeButton").onclick = () => {
-    
-}
-
-document.getElementById("bothButton").onclick = () => {
-    // const p = document.getElementById("p").value == 0 ? 0 : document.getElementById("p").value;
-    // const q = document.getElementById("q").value == 0 ? 0 : document.getElementById("q").value;
     const e = BigInt(document.getElementById("lockVal1").value);
     const lockN = BigInt(document.getElementById("lockVal2").value);
     const d = BigInt(document.getElementById("keyVal1").value);
     const keyN = BigInt(document.getElementById("keyVal2").value);
     const message = document.getElementById("message").value;
-    const letters = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    let encrypted = "";
+    let decrypted = "";
+    let decryptedMessage = "";
+    encrypted = message.split(" ")
+    encrypted.pop();
+    for (const encd of encrypted) {
+        const decode = (BigInt(encd) ** BigInt(d)) % BigInt(keyN);
+        decrypted += `${decode} `;
+        decryptedMessage += `${letters[decode]}`;
+    }
+    document.getElementById("first").innerHTML     = `Decrypts down to => \n${decrypted}`;
+    document.getElementById("second").innerHTML    = `Which becomes: ${decryptedMessage}`;
+    document.getElementById("third").innerHTML     = "";
+    document.getElementById("fourth").innerHTML    =  "";
+    document.getElementById("fifth").innerHTML     =  "";
+    document.getElementById("sixth").innerHTML     =  "";
+    document.getElementById("seventh").innerHTML   =  "";
+}
+
+document.getElementById("bothButton").onclick = () => {
+    const e = BigInt(document.getElementById("lockVal1").value);
+    const lockN = BigInt(document.getElementById("lockVal2").value);
+    const d = BigInt(document.getElementById("keyVal1").value);
+    const keyN = BigInt(document.getElementById("keyVal2").value);
+    const message = document.getElementById("message").value;
 
     let encrypted = "";
     let msgNumerals = "";
@@ -55,12 +96,12 @@ document.getElementById("bothButton").onclick = () => {
     document.getElementById("first").innerHTML = `Your message was: ${message}`;
     document.getElementById("second").innerHTML = `Which becomes: ${msgNumerals}`;
     document.getElementById("third").innerHTML = `After encryption, this becomes: ${encrypted}`;
-    document.getElementById("fourth").innerHTML = `This, when stringified, becomes: ${encryptedMessage}`
-    for (const encd of encrypted.split(" ")) {
+    document.getElementById("fourth").innerHTML = `This, when stringified, becomes: ${encryptedMessage}`;
+    encrypted = encrypted.split(" ")
+    encrypted.pop();
+    for (const encd of encrypted) {
         const decode = (BigInt(encd) ** BigInt(d)) % BigInt(keyN);
         decrypted += `${decode} `;
-        if (decode > 0 && letters[decode + 10n]) {
-        }
         decryptedMessage += `${letters[decode]}`;
     }
     document.getElementById("fifth").innerHTML = `Decrypts down to => \n${decrypted}`;
@@ -113,7 +154,7 @@ function phi(n) {
         result *= (1.0 - (1.0 / n));
     }
 
-    return result;
+    return Math.floor(result);
 }
 
 function gcdEuclid(a, b) {
