@@ -1,7 +1,7 @@
 const letters = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 document.getElementById("genButton").onclick = () => {
-    const p = document.getElementById("p").value == 0 ? 0 : document.getElementById("p").value;
-    const q = document.getElementById("q").value == 0 ? 0 : document.getElementById("q").value;
+    const p = document.getElementById("p").value === 0 ? 0 : document.getElementById("p").value;
+    const q = document.getElementById("q").value === 0 ? 0 : document.getElementById("q").value;
     
     const N = getN(p, q);
     const phiN = phi(N);
@@ -20,7 +20,7 @@ document.getElementById("genButton").onclick = () => {
     document.getElementById("lockVal2").innerHTML  =  N;
     document.getElementById("keyVal1").innerHTML   =  d;
     document.getElementById("keyVal2").innerHTML   =  N;
-}
+};
 
 document.getElementById("encodeButton").onclick = () => {
     const e = BigInt(document.getElementById("lockVal1").value);
@@ -33,7 +33,7 @@ document.getElementById("encodeButton").onclick = () => {
     for (const char of message) {
         if (!letters.includes(char.toLowerCase())) continue;
         const numChar = letters.indexOf(char.toLowerCase());
-        const encode = (BigInt(numChar) ** BigInt(e)) % BigInt(lockN)
+        const encode = (BigInt(numChar) ** BigInt(e)) % BigInt(lockN);
         encrypted += `${encode} `;
         msgNumerals += `${numChar} `;
         encryptedMessage += letters[encode];
@@ -45,33 +45,28 @@ document.getElementById("encodeButton").onclick = () => {
     document.getElementById("fifth").innerHTML     =  "";
     document.getElementById("sixth").innerHTML     =  "";
     document.getElementById("seventh").innerHTML   =  "";
-}
+};
 
 document.getElementById("decodeButton").onclick = () => {
-    const e = BigInt(document.getElementById("lockVal1").value);
-    const lockN = BigInt(document.getElementById("lockVal2").value);
     const d = BigInt(document.getElementById("keyVal1").value);
     const keyN = BigInt(document.getElementById("keyVal2").value);
-    const message = document.getElementById("message").value;
-
-    let encrypted = "";
+    let message = document.getElementById("message").value;
     let decrypted = "";
     let decryptedMessage = "";
-    encrypted = message.split(" ")
-    encrypted.pop();
-    for (const encd of encrypted) {
-        const decode = (BigInt(encd) ** BigInt(d)) % BigInt(keyN);
+    message = message.split("");
+    for (const encd of message) {
+        const decode = (BigInt(letters.indexOf(encd.toLowerCase())) ** BigInt(d)) % BigInt(keyN);
         decrypted += `${decode} `;
         decryptedMessage += `${letters[decode]}`;
     }
-    document.getElementById("first").innerHTML     = `Decrypts down to => \n${decrypted}`;
-    document.getElementById("second").innerHTML    = `Which becomes: ${decryptedMessage}`;
-    document.getElementById("third").innerHTML     = "";
+    document.getElementById("first").innerHTML     =  `Decrypts down to => \n${decrypted}`;
+    document.getElementById("second").innerHTML    =  `Which becomes: ${decryptedMessage}`;
+    document.getElementById("third").innerHTML     =  "";
     document.getElementById("fourth").innerHTML    =  "";
     document.getElementById("fifth").innerHTML     =  "";
     document.getElementById("sixth").innerHTML     =  "";
     document.getElementById("seventh").innerHTML   =  "";
-}
+};
 
 document.getElementById("bothButton").onclick = () => {
     const e = BigInt(document.getElementById("lockVal1").value);
@@ -97,7 +92,7 @@ document.getElementById("bothButton").onclick = () => {
     document.getElementById("second").innerHTML = `Which becomes: ${msgNumerals}`;
     document.getElementById("third").innerHTML = `After encryption, this becomes: ${encrypted}`;
     document.getElementById("fourth").innerHTML = `This, when stringified, becomes: ${encryptedMessage}`;
-    encrypted = encrypted.split(" ")
+    encrypted = encrypted.split(" ");
     encrypted.pop();
     for (const encd of encrypted) {
         const decode = (BigInt(encd) ** BigInt(d)) % BigInt(keyN);
@@ -107,7 +102,7 @@ document.getElementById("bothButton").onclick = () => {
     document.getElementById("fifth").innerHTML = `Decrypts down to => \n${decrypted}`;
     document.getElementById("sixth").innerHTML = `Which becomes: ${decryptedMessage}`;
     document.getElementById("seventh").innerHTML = "";
-}
+};
 
 // Math Functions
 
@@ -141,11 +136,11 @@ function getKey(p, q) {
 
 function phi(n) {
     let result = n; 
-    for (let p = 2; p * p <= n; p++)  
+    for (let p = 2; p * p <= n; p++)
     {
-        if (n % p == 0)  
+        if (n % p === 0)
         { 
-            while (n % p == 0) 
+            while (n % p === 0)
                 n /= p; 
             result *= (1.0 - (1.0 / p)); 
         } 
@@ -153,18 +148,16 @@ function phi(n) {
     if (n > 1) {
         result *= (1.0 - (1.0 / n));
     }
-
     return Math.floor(result);
 }
 
 function gcdEuclid(a, b) {
-    var t;
+    let t;
     while (b !== 0) {
         t = b;
         b = a % b;
         a = t;
     }
-
     return a;
 }
 
