@@ -6,7 +6,7 @@ document.getElementById("genButton").onclick = () => {
     const N = getN(p, q);
     const phiN = phi(N);
     const e = getE(N);
-    const d = getD(e, phiN);
+    const d = getD(getE(getN(p, q)), phi(getN(p, q)));
 
     document.getElementById("first").innerHTML     =  `<b>p = ${p}, q = ${q}</b>`;
     document.getElementById("second").innerHTML    =  `<b>N = pq = ${N}</b>`;
