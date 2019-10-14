@@ -125,7 +125,7 @@ function getE(N) {
 function getD(e, N) {
     // de (mod N) = 1
     for (let d = 0; d !== -1; d++) {
-        if ((e * d) % N === 1) return d;
+        if (((e * d) % N == 1) && d != e) return d;
     }
 }
 
