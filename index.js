@@ -111,17 +111,32 @@ document.getElementById("bothButton").onclick = () => {
     document.getElementById("seventh").innerHTML = "";
 };
 
-// Math Functions
+/**  /////////////////////////////////////////////////////////////////////////
+ *                     ALL MATHEMATICAL FUNCTIONS BELOW
+ */
 
+/**
+ * Obtain `N` value by multiplying `p` value and `q` value.
+ * @param { Number } p 
+ * @param { Number } q 
+ */
 function getN(p, q) {
     return p * q;
 }
 
+/**
+ * Obtain `e` value from `N` value.
+ * @param { Number } N 
+ */
 function getE(N) {
-    let phiN = phi(N);
-    return chooseFrom(N, phiN);
+    return chooseFrom(N, phi(N));
 }
 
+/**
+ * Obtain `d` value from `e` value and `N` value.
+ * @param { Number } e 
+ * @param { Number } N 
+ */
 function getD(e, N) {
     // de (mod N) = 1
     for (let d = 0; d !== -1; d++) {
@@ -129,18 +144,32 @@ function getD(e, N) {
     }
 }
 
+/**
+ * Get stringified lock from `p` value and `q` value.
+ * @param { Number } p 
+ * @param { Number } q 
+ */
 function getLock(p, q) {
     let e = getE(getN(p, q));
     let N = getN(p, q);
     return `${e}, ${N}`;
 }
 
+/**
+ * Get stringified key from `p` value and `q` value.
+ * @param { Number } p 
+ * @param { Number } q 
+ */
 function getKey(p, q) {
     let d = getD(getE(getN(p, q)), phi(getN(p, q)));
     let N = getN(p, q);
     return `${d}, ${N}`;
 }
 
+/**
+ * Totient function of any number `n`.
+ * @param { Number } n 
+ */
 function phi(n) {
     let result = n; 
     for (let p = 2; p * p <= n; p++)
@@ -157,6 +186,11 @@ function phi(n) {
     return Math.floor(result);
 }
 
+/**
+ * Get greatest common divisor of `a` and `b`.
+ * @param { Number } a 
+ * @param { Number } b 
+ */
 function gcdEuclid(a, b) {
     let t;
     while (b !== 0) {
@@ -167,10 +201,20 @@ function gcdEuclid(a, b) {
     return a;
 }
 
+/**
+ * Returns true if Greatest Common Denominator of `a` and `b` is equal to `1`.
+ * @param { Number } a 
+ * @param { Number } b 
+ */
 function checkIfCoPrime(a, b) {
     return gcdEuclid(a, b) === 1;
 }
 
+/**
+ * Chooses the first number that is coprime to `N` value and the `totient` of `N` AKA `(phi(N))`.
+ * @param { Number } N 
+ * @param { Number } phiN 
+ */
 function chooseFrom(N = 0, phiN = 0) {
     for (let i = 0; i !== -1; i++) {
         if (checkIfCoPrime(i, N) && checkIfCoPrime(i, phiN) && i !== 1) {
