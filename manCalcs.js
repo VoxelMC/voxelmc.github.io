@@ -7,15 +7,18 @@ const trevorCipher = [
 ];
 
 console.log(
-    f("Maths!"),
+    f("Maths!")[2][1],
 );
 
 function f(string) {
-    let out = [ [], [] ];
+    let out = [ [], [] , []];
     for (const letter of string) {
         out[0].push(trevorCipher.indexOf(letter));
-        out[1].push((BigInt(trevorCipher.indexOf(letter)) ** BigInt(5)) % BigInt(13031))
+        out[1].push((BigInt(trevorCipher.indexOf(letter)) ** BigInt(5)) % BigInt(13031));
+        
     }
+    out[2].push(BigInt(1545) ** BigInt(5117));
+    out[2].push(BigInt(7405) ** BigInt(5117));
     return out;
 }
 
