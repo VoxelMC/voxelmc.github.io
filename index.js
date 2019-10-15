@@ -1,4 +1,10 @@
-const letters = [" ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const letters = [
+    " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", 
+    "u", "v", "w", "x", "y", "z", "!", "?", ",", "/", ".", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+    "`", "~", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "<", ">", "{", "}", ":", ";",
+    "\\", "[", "]", "|", "'", '"', "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+    "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+];
 document.getElementById("genButton").onclick = () => {
     const p = document.getElementById("p").value === 0 ? 0 : document.getElementById("p").value;
     const q = document.getElementById("q").value === 0 ? 0 : document.getElementById("q").value;
@@ -31,7 +37,7 @@ document.getElementById("encodeButton").onclick = () => {
     let msgNumerals = "";
     let encryptedMessage = "";
     for (const char of message) {
-        if (!letters.includes(char.toLowerCase())) continue;
+        if (!letters.includes(char)) continue;
         const numChar = letters.indexOf(char.toLowerCase());
         const encode = (BigInt(numChar) ** BigInt(e)) % BigInt(lockN);
         encrypted += `${encode} `;
@@ -88,7 +94,7 @@ document.getElementById("bothButton").onclick = () => {
     let decrypted = "";
     let decryptedMessage = "";
     for (const char of message) {
-        if (!letters.includes(char.toLowerCase())) continue;
+        if (!letters.includes(char)) continue;
         const numChar = letters.indexOf(char.toLowerCase());
         const encode = (BigInt(numChar) ** BigInt(e)) % BigInt(lockN)
         encrypted += `${encode} `;
