@@ -1,3 +1,4 @@
+// All Code Originally Written by Trevor Fox (UNLESS SPECIFICALLY STATED and CITED)
 const letters = [
     " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", 
     "u", "v", "w", "x", "y", "z", "!", "?", ",", "/", ".", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
@@ -22,10 +23,10 @@ document.getElementById("genButton").onclick = () => {
     document.getElementById("sixth").innerHTML     =  `Find <em>d</em> where <em>de</em> (<em>mod N</em>) = 1 => ${e}d (<em>mod ${N}</em>) = 1 => <b>d = ${d}</b>`;
     document.getElementById("seventh").innerHTML   =  `Private Key is (d, N) = <b>(${getKey(p, q)})</b>`;
 
-    document.getElementById("lockVal1").innerHTML  =  e;
-    document.getElementById("lockVal2").innerHTML  =  N;
-    document.getElementById("keyVal1").innerHTML   =  d;
-    document.getElementById("keyVal2").innerHTML   =  N;
+    document.getElementById("lockVal1").value  =  e;
+    document.getElementById("lockVal2").value  =  N;
+    document.getElementById("keyVal1").value   =  d;
+    document.getElementById("keyVal2").value   =  N;
 };
 
 document.getElementById("encodeButton").onclick = () => {
@@ -174,6 +175,8 @@ function getKey(p, q) {
 
 /**
  * Totient function of any number `n`.
+ * 
+ * **Adapted from** Java Example found on https://www.geeksforgeeks.org/eulers-totient-function/
  * @param { Number } n 
  */
 function phi(n) {
@@ -194,6 +197,8 @@ function phi(n) {
 
 /**
  * Get greatest common divisor of `a` and `b`.
+ * 
+ * **Based on pseudocode** found in *The Art of Programming* by David Knuth | ISBN: *0-201-03801-3*
  * @param { Number } a 
  * @param { Number } b 
  */
