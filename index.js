@@ -38,7 +38,7 @@ document.getElementById("encodeButton").onclick = () => {
     let encryptedMessage = "";
     for (const char of message) {
         if (!letters.includes(char)) continue;
-        const numChar = letters.indexOf(char.toLowerCase());
+        const numChar = letters.indexOf(char);
         const encode = (BigInt(numChar) ** BigInt(e)) % BigInt(lockN);
         encrypted += `${encode} `;
         msgNumerals += `${numChar} `;
@@ -68,7 +68,7 @@ document.getElementById("decodeButton").onclick = () => {
         message = message.split(" ");
     }
     for (const encd of message) {
-        const decode = parseAsString ? (BigInt(letters.indexOf(encd.toLowerCase())) ** BigInt(d)) % BigInt(keyN) : (BigInt(encd) ** BigInt(d)) % BigInt(keyN);
+        const decode = parseAsString ? (BigInt(letters.indexOf(encd)) ** BigInt(d)) % BigInt(keyN) : (BigInt(encd) ** BigInt(d)) % BigInt(keyN);
         decrypted += `${decode} `;
         decryptedMessage += `${letters[decode]}`;
     }
@@ -95,7 +95,7 @@ document.getElementById("bothButton").onclick = () => {
     let decryptedMessage = "";
     for (const char of message) {
         if (!letters.includes(char)) continue;
-        const numChar = letters.indexOf(char.toLowerCase());
+        const numChar = letters.indexOf(char);
         const encode = (BigInt(numChar) ** BigInt(e)) % BigInt(lockN)
         encrypted += `${encode} `;
         msgNumerals += `${numChar} `;
